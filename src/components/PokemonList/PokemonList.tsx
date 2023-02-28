@@ -55,6 +55,11 @@ export default function PokemonList() {
 
       }
 
+      function onRemoveP(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setListPoke(listOfPokemons.filter(poke=> {return poke.name !== newPokemon.name; }));
+      }
+
       function setNameP(event: React.ChangeEvent<HTMLInputElement>){
         
         newPokemon.name = event.target.value;
@@ -64,6 +69,14 @@ export default function PokemonList() {
     <div>
         <h3>Add Pokemon via PokeAPI</h3>
         <form className="grid" onSubmit={onSubmitP}>
+            <label>Name</label>
+            <input type="text" onChange={setNameP}></input>
+            <br/>
+            <input type="submit"></input>
+        </form>
+
+        <h3>Remove Pokemon by name</h3>
+        <form className="grid" onSubmit={onRemoveP}>
             <label>Name</label>
             <input type="text" onChange={setNameP}></input>
             <br/>
